@@ -1,11 +1,11 @@
 package command
 
 import application.clock
-import application.operations
+import application.account
 import domain.banking.Deposit
 
 class MakeDeposit(private val amount: Double) {
     fun execute() {
-        operations.add(Deposit(amount, clock.now()))
+        account.add(Deposit(amount, clock.now()))
     }
 }

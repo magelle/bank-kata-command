@@ -3,14 +3,18 @@ import assertk.assert
 import assertk.assertions.isEqualTo
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
+import command.makeADepositOf
+import command.withdraw
+import domain.banking.Account
 import org.junit.Test
+import query.getStatement
 import java.time.LocalDateTime
 
 class BankFeatureTest {
 
     @Test
     fun `should print statement when asked`() {
-        operations = mutableListOf()
+        account = Account()
         clock = mock()
         whenever(clock.now()).thenReturn(
                 LocalDateTime.of(2012, 1, 10, 0, 0, 0),

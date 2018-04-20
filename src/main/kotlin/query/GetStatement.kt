@@ -1,6 +1,6 @@
 package query
 
-import application.operations
+import application.account
 import domain.banking.Deposit
 import domain.banking.Operation
 import domain.banking.Withdrawal
@@ -11,7 +11,8 @@ import java.time.format.DateTimeFormatter
 class GetStatement {
     fun query(): String {
         var balance = .0
-        return "date;credit;debit;balance\n${operations
+        return "date;credit;debit;balance\n${account
+                .operations()
                 .sortedBy { op -> op.date }
                 .asSequence()
                 .map { op ->

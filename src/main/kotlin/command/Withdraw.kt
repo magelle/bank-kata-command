@@ -1,11 +1,13 @@
 package command
 
 import application.clock
-import application.operations
+import application.account
 import domain.banking.Withdrawal
 
 class Withdraw(private val amount: Double) {
     fun execute() {
-        operations.add(Withdrawal(amount, clock.now()))
+        if (account.balance() >= amount) {
+            account.add(Withdrawal(amount, clock.now()))
+        }
     }
 }
