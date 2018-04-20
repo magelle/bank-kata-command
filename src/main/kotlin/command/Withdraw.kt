@@ -6,8 +6,10 @@ import domain.banking.Withdrawal
 
 class Withdraw(private val amount: Double) {
     fun execute() {
-        if (account.balance() >= amount) {
+        if (hasEnough()) {
             account.add(Withdrawal(amount, clock.now()))
         }
     }
+
+    private fun hasEnough() = account.balance() >= amount
 }
